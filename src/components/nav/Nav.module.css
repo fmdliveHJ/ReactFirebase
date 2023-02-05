@@ -1,0 +1,16 @@
+.nav {
+  background-color: lightblue;
+  padding: 20px 50px;
+}
+.nav .list_nav {
+  display: flex;
+  justify-content: right;
+}
+
+.nav .title {
+  color: #fff;
+}
+.nav a {
+  margin-left: 16px;
+  display: block;
+}
