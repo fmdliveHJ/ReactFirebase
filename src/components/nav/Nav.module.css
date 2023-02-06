@@ -5,6 +5,7 @@
 .nav .list_nav {
   display: flex;
   justify-content: right;
+  align-items: center;
 }
 
 .nav .title {
@@ -13,4 +14,11 @@
 .nav a {
   margin-left: 16px;
   display: block;
+}
+
+.nav button {
+  padding: 6px 12px;
+  border-radius: 10px;
+  background: #fff;
+  border: none;
 }

@@ -1,20 +1,31 @@
 import React, { useState } from "react";
+import { useLogin } from "../../hooks/useLogin";
 import styles from "./Login.module.css";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const { error, isPending, login } = useLogin();
 
   const handleData = (e) => {
     if (e.target.type === "email") {
       setEmail(e.target.value);
-    } else if (e.target.value === "password") {
+    } else if (e.target.type === "password") {
       setPassword(e.target.value);
     }
   };
+  //   const handleData = (event) => {
+  //     if (event.target.type === "email") {
+  //         setEmail(event.target.value);
+  //     } else if (event.target.type === "password") {
+  //         setPassword(event.target.value);
+  //     }
+  // }
+
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log(email, password);
+    login(email, password);
   };
 
   return (
@@ -29,7 +40,7 @@ const Login = () => {
           value={email}
           onChange={handleData}
         />
-        <label htmlFor="myPassword">password:</label>
+        <label htmlFor="myPassword">password1:</label>
         <input
           type="password"
           id="myPassWord"
@@ -37,9 +48,13 @@ const Login = () => {
           value={password}
           onChange={handleData}
         />
-        <button type="submit" className={styles.button}>
-          로그인
-        </button>
+        {!isPending && (
+          <button type="submit" className={styles.button}>
+            로그인
+          </button>
+        )}
+        {isPending && <strong>로그인 진행중입니다..</strong>}
+        {error && <strong>{error}</strong>}
       </fieldset>
     </form>
   );

@@ -8,6 +8,8 @@ const authReducer = (state, action) => {
     case "login":
       //기존의 유저 정보에 새로운 액션의 페이로드로 받아오는 유저정보를 가져옴
       return { ...state, user: action.payload };
+    case "logout":
+      return { ...state, user: null };
     default:
       return state;
   }
