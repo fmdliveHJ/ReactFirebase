@@ -1,12 +1,12 @@
 import styles from "./Signup.module.css";
 import { useState } from "react";
+import { useSignup } from "../../hooks/useSignup";
 
 const Signup = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  // displayName은 파이어베이스에서 유저 정보에 저장 할 수 있는 속성중 하나입니다.
-  // 때문에 다른 변수명을 사용하지 말아주세요. ( 참고 : https://firebase.google.com/docs/reference/js/auth.md#updateprofile)
   const [displayName, setDisplayName] = useState("");
+  const { error, isPending, signup } = useSignup();
 
   const handleData = (event) => {
     if (event.target.type === "email") {
@@ -21,6 +21,7 @@ const Signup = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
     console.log(email, password, displayName);
+    signup(email, password, displayName);
   };
 
   return (
